@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВОЗРОЖДЕНИЕ ВЛАДИМИРА — конкурс роликов BLACK RUSSIA | VLADIMIR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Oswald:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#0a0c0f;
+    --asphalt-2:#14181d;
+    --asphalt-3:#1c2127;
+    --gold:#ffb000;
+    --gold-bright:#ffd04a;
+    --blood:#ff7a00;
+    --steel:#3a4652;
+    --paper:#eae6db;
+    --muted:#8b9096;
+    --line: rgba(255,176,0,0.20);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--asphalt);
+    color:var(--paper);
+    font-family:'Manrope',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+  ::selection{background:var(--gold);color:var(--asphalt);}
+
+  h1,h2,h3{font-family:'Teko',sans-serif;font-weight:600;letter-spacing:0.01em;text-transform:uppercase;line-height:0.95;}
+  .eyebrow, .mono{font-family:'JetBrains Mono',monospace;}
+
+  a{color:inherit;}
+
+  .grain{
+    position:fixed;inset:0;pointer-events:none;z-index:200;
+    opacity:0.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain 0.6s steps(2) infinite;
+  }
+  @keyframes grain{0%{transform:translate(0,0);}50%{transform:translate(-1%,1%);}100%{transform:translate(1%,-1%);}}
+
+  .scanline{
+    position:fixed;left:0;right:0;height:140px;z-index:199;pointer-events:none;
+    background:linear-gradient(to bottom, transparent, rgba(255,176,0,0.06) 40%, rgba(255,122,0,0.09) 50%, rgba(255,176,0,0.06) 60%, transparent);
+    animation:scan 9s linear infinite;
+    opacity:0.6;
+  }
+  @keyframes scan{0%{top:-140px;}100%{top:100vh;}}
+
+  .vignette{position:fixed;inset:0;z-index:198;pointer-events:none;
+    box-shadow:inset 0 0 18vw 2vw rgba(0,0,0,0.75);}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:150;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 5vw;
+    background:linear-gradient(to bottom, rgba(10,12,15,0.92), rgba(10,12,15,0));
+    backdrop-filter:blur(2px);
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Teko';font-size:26px;letter-spacing:0.04em;}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--blood);animation:blink 1.4s infinite;box-shadow:0 0 8px var(--blood);}
+  .logo b{color:var(--gold);}
+  .navlinks{display:flex;gap:34px;font-family:'JetBrains Mono';font-size:12px;letter-spacing:0.08em;text-transform:uppercase;}
+  .navlinks a{opacity:0.75;transition:opacity .25s, color .25s;text-decoration:none;position:relative;}
+  .navlinks a:hover{opacity:1;color:var(--gold-bright);}
+  .nav-cta{
+    font-family:'JetBrains Mono';font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+    border:1px solid var(--gold);color:var(--gold);padding:9px 18px;text-decoration:none;
+    transition:background .25s, color .25s;white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--gold);color:var(--asphalt);}
+  @media (max-width:860px){.navlinks{display:none;}}
+
+  .hero{
+    min-height:100svh;position:relative;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;text-align:center;padding:120px 5vw 60px;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255,176,0,0.12), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 20% 100%, rgba(255,122,0,0.12), transparent 60%),
+      var(--asphalt);
+    overflow:hidden;
+  }
+  .hero-grid{position:absolute;inset:0;
+    background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%);
+    opacity:0.5;
+  }
+
+  .viewfinder{position:absolute;inset:28px;pointer-events:none;z-index:5;}
+  .corner{position:absolute;width:34px;height:34px;border:2px solid var(--gold);opacity:0.8;}
+  .corner.tl{top:0;left:0;border-right:none;border-bottom:none;}
+  .corner.tr{top:0;right:0;border-left:none;border-bottom:none;}
+  .corner.bl{bottom:0;left:0;border-right:none;border-top:none;}
+  .corner.br{bottom:0;right:0;border-left:none;border-top:none;}
+  .hud-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:0 6px;
+    font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.06em;color:var(--gold-bright);}
+  .rec-tag{display:flex;align-items:center;gap:6px;}
+  .rec-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--blood);animation:blink 1s infinite;}
+  .hud-bottom{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;padding:0 6px;
+    font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.04em;color:var(--muted);}
+  @keyframes blink{0%,55%{opacity:1;}56%,100%{opacity:0.15;}}
+
+  .eyebrow-badge{
+    font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-bright);
+    border:1px solid var(--line);padding:7px 16px;border-radius:999px;margin-bottom:26px;
+    display:inline-flex;align-items:center;gap:10px;background:rgba(255,176,0,0.06);
+  }
+  .eyebrow-badge span.sep{width:4px;height:4px;background:var(--gold);border-radius:50%;}
+
+  .hero h1{
+    font-size:clamp(52px, 11vw, 148px);
+    color:var(--paper);
+    position:relative;
+    text-shadow:0 0 40px rgba(255,176,0,0.18);
+  }
+  .hero h1 .glitchline{display:block; position:relative;}
+  .hero h1 .gold-word{
+    color:var(--gold);
+    background:linear-gradient(100deg, var(--gold) 20%, var(--gold-bright) 40%, var(--gold) 60%);
+    background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:shimmer 5s linear infinite;
+  }
+  @keyframes shimmer{0%{background-position:0% 0;}100%{background-position:-220% 0;}}
+
+  .glitch-wrap{position:relative;display:inline-block;}
+  .glitch-wrap::before, .glitch-wrap::after{
+    content:attr(data-text);position:absolute;top:0;left:0;width:100%;
+    overflow:hidden;color:var(--paper);background:var(--asphalt);
+  }
+  .glitch-wrap::before{left:2px;text-shadow:-2px 0 var(--blood);animation:glitch1 4.5s infinite linear alternate-reverse;}
+  .glitch-wrap::after{left:-2px;text-shadow:2px 0 var(--gold-bright);animation:glitch2 3.7s infinite linear alternate-reverse;}
+  @keyframes glitch1{0%{clip-path:inset(10% 0 85% 0);}20%{clip-path:inset(80% 0 5% 0);}40%{clip-path:inset(40% 0 45% 0);}60%{clip-path:inset(2% 0 92% 0);}80%{clip-path:inset(60% 0 20% 0);}100%{clip-path:inset(25% 0 60% 0);}}
+  @keyframes glitch2{0%{clip-path:inset(70% 0 10% 0);}20%{clip-path:inset(15% 0 70% 0);}40%{clip-path:inset(50% 0 30% 0);}60%{clip-path:inset(5% 0 85% 0);}80%{clip-path:inset(35% 0 50% 0);}100%{clip-path:inset(65% 0 15% 0);}}
+
+  .hero p.sub{
+    max-width:640px;margin:26px auto 0;font-size:17px;line-height:1.6;color:var(--muted);
+    font-weight:500;
+  }
+  .hero-ctas{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap;justify-content:center;}
+  .btn-primary, .btn-ghost{
+    font-family:'JetBrains Mono';font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+    padding:15px 30px;text-decoration:none;transition:all .25s;cursor:pointer;border:none;
+  }
+  .btn-primary{background:var(--gold);color:var(--asphalt);font-weight:600;position:relative;overflow:hidden;}
+  .btn-primary:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,122,0,0.30);}
+  .btn-ghost{border:1px solid var(--steel);color:var(--paper);background:transparent;}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright);}
+
+  .countdown-strip{
+    margin-top:56px;display:flex;gap:28px;flex-wrap:wrap;justify-content:center;
+  }
+  .cd-block{text-align:center;min-width:76px;}
+  .cd-num{font-family:'Teko';font-size:44px;color:var(--gold-bright);line-height:1;}
+  .cd-label{font-family:'JetBrains Mono';font-size:10px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-top:6px;}
+
+  .scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    font-family:'JetBrains Mono';font-size:10px;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--gold), transparent);animation:pulse-line 2s infinite;}
+  @keyframes pulse-line{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+  section{position:relative;padding:120px 5vw;max-width:1280px;margin:0 auto;}
+  .section-head{margin-bottom:64px;max-width:760px;}
+  .section-head .eyebrow{font-size:12px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;display:block;}
+  .section-head h2{font-size:clamp(36px,5.4vw,64px);color:var(--paper);}
+  .section-head p{color:var(--muted);font-size:16px;margin-top:16px;line-height:1.65;max-width:620px;}
+
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:start;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{font-size:17px;line-height:1.75;color:#c9cdd2;margin-bottom:18px;}
+  .about-text p b{color:var(--gold-bright);font-weight:700;}
+  .note-strip{border-left:2px solid var(--blood);padding:14px 20px;background:rgba(255,176,32,0.08);font-size:14px;color:#ffe0a3;margin-top:24px;}
+
+  .platform-list{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);}
+  .platform-row{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:var(--asphalt-2);transition:background .25s;}
+  .platform-row:hover{background:var(--asphalt-3);}
+  .platform-row .name{font-family:'Oswald';font-size:16px;letter-spacing:0.02em;}
+  .platform-row .tag{font-family:'JetBrains Mono';font-size:10px;color:var(--muted);letter-spacing:0.08em;}
+
+  .conditions{display:flex;flex-direction:column;border-top:1px solid var(--line);}
+  .cond-row{
+    display:grid;grid-template-columns:90px 1fr auto;gap:24px;align-items:center;
+    padding:30px 6px;border-bottom:1px solid var(--line);
+    transition:background .3s;
+  }
+  .cond-row:hover{background:rgba(255,176,0,0.04);}
+  .cond-num{font-family:'Teko';font-size:56px;color:var(--steel);transition:color .3s;line-height:1;}
+  .cond-row:hover .cond-num{color:var(--gold);}
+  .cond-body h3{font-family:'Oswald';font-size:19px;text-transform:none;letter-spacing:0.01em;color:var(--paper);margin-bottom:6px;font-weight:600;}
+  .cond-body p{font-size:14px;color:var(--muted);line-height:1.55;}
+  .cond-body a{color:var(--gold-bright);text-decoration:underline;text-decoration-color:rgba(255,176,0,0.35);text-underline-offset:3px;}
+  .cond-link{
+    font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+    border:1px solid var(--steel);padding:9px 16px;text-decoration:none;white-space:nowrap;transition:all .25s;
+  }
+  .cond-link:hover{border-color:var(--gold);color:var(--gold-bright);}
+  @media (max-width:640px){.cond-row{grid-template-columns:50px 1fr;}.cond-link{grid-column:1/-1;justify-self:start;}}
+
+  .prize-hero{
+    display:grid;grid-template-columns:1.3fr 1fr;gap:2px;margin-bottom:2px;background:var(--line);
+  }
+  @media (max-width:860px){.prize-hero{grid-template-columns:1fr;}}
+  .prize-card{background:var(--asphalt-2);padding:38px;position:relative;overflow:hidden;isolation:isolate;}
+  .prize-card::before{
+    content:'';position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(120deg, transparent 30%, rgba(255,176,0,0.14) 45%, transparent 60%);
+    background-size:220% 220%;background-position:120% 0;
+    transition:background-position .7s ease;
+  }
+  .prize-card:hover::before{background-position:-20% 0;}
+  .prize-place{font-family:'JetBrains Mono';font-size:12px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+  .prize-place .rank{font-family:'Teko';font-size:22px;color:var(--asphalt);background:var(--gold);padding:0 10px;line-height:1.5;}
+  .prize-card h3{font-size:clamp(30px,3.4vw,44px);color:var(--paper);margin-bottom:16px;}
+  .prize-card ul{list-style:none;font-size:14px;color:var(--muted);line-height:1.9;}
+  .prize-card ul li::before{content:'—';color:var(--gold);margin-right:8px;}
+  .prize-card.gold-tier{background:linear-gradient(160deg, var(--asphalt-3), var(--asphalt-2));border:1px solid var(--line);}
+
+  .prize-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);margin-bottom:2px;}
+  @media (max-width:640px){.prize-grid{grid-template-columns:1fr;}}
+  .prize-mini{background:var(--asphalt-2);padding:30px;}
+  .prize-mini .prize-place{margin-bottom:12px;}
+  .prize-mini h3{font-size:28px;margin-bottom:10px;}
+  .prize-mini ul{font-size:13px;}
+
+  .prize-band{display:grid;grid-template-columns:1fr;gap:2px;background:var(--line);}
+  @media (max-width:640px){.prize-band{grid-template-columns:1fr;}}
+  .band-block{background:var(--asphalt-2);padding:30px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .band-block .prize-place{justify-content:center;margin-bottom:14px;}
+  .band-block .range{font-family:'Teko';font-size:36px;color:var(--gold-bright);margin-bottom:8px;}
+  .band-block .amount{font-family:'Oswald';font-size:20px;color:var(--paper);margin-bottom:10px;}
+  .band-block p{font-size:13px;color:var(--muted);line-height:1.7;}
+
+  .stat-strip{display:flex;gap:2px;margin-top:2px;background:var(--line);flex-wrap:wrap;}
+  .stat-box{flex:1;min-width:150px;background:var(--asphalt-2);padding:26px 24px;}
+  .stat-box .num{font-family:'Teko';font-size:52px;color:var(--gold);line-height:1;}
+  .stat-box .lbl{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:6px;}
+
+  .timeline{position:relative;padding-left:34px;}
+  .timeline::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--gold), var(--steel));}
+  .tl-item{position:relative;padding-bottom:46px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{content:'';position:absolute;left:-34px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--asphalt);border:2px solid var(--gold);}
+  .tl-item .tl-date{font-family:'JetBrains Mono';font-size:11px;color:var(--gold-bright);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;}
+  .tl-item h3{font-family:'Oswald';font-size:20px;font-weight:600;text-transform:none;color:var(--paper);margin-bottom:6px;}
+  .tl-item p{font-size:14px;color:var(--muted);line-height:1.6;max-width:520px;}
+  .tl-tag{display:inline-block;margin-top:8px;font-family:'JetBrains Mono';font-size:10px;color:var(--muted);border:1px solid var(--steel);padding:3px 9px;letter-spacing:0.06em;}
+
+  .org-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);}
+  @media (max-width:640px){.org-grid{grid-template-columns:1fr;}}
+  .org-card{background:var(--asphalt-2);padding:38px;}
+  .org-role{font-family:'JetBrains Mono';font-size:11px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
+  .org-avatar{width:64px;height:64px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Teko';font-size:26px;color:var(--gold-bright);margin-bottom:20px;}
+  .org-card h3{font-size:32px;color:var(--paper);margin-bottom:8px;}
+  .org-card .org-sub{font-size:13px;color:var(--muted);margin-bottom:18px;}
+  .org-links{display:flex;gap:12px;flex-wrap:wrap;}
+  .org-links a{font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.05em;text-transform:uppercase;border:1px solid var(--steel);padding:8px 14px;text-decoration:none;transition:all .25s;}
+  .org-links a:hover{border-color:var(--gold);color:var(--gold-bright);}
+
+  .form-wrap{background:var(--asphalt-2);border:1px solid var(--line);padding:52px;position:relative;}
+  @media (max-width:640px){.form-wrap{padding:28px;}}
+  .form-wrap::before{
+    content:'ЗАЯВКА';position:absolute;top:-1px;right:-1px;background:var(--gold);color:var(--asphalt);
+    font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.1em;padding:6px 14px;
+  }
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+  @media (max-width:640px){.form-grid{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:8px;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+  .field input, .field select{
+    background:var(--asphalt);border:1px solid var(--steel);color:var(--paper);
+    padding:13px 14px;font-family:'Manrope';font-size:14px;transition:border-color .25s, background .25s;
+    outline:none;
+  }
+  .field input:focus, .field select:focus{border-color:var(--gold);background:var(--asphalt-3);}
+  .field input::placeholder{color:#5c636b;}
+  .checks{display:flex;flex-direction:column;gap:14px;margin-bottom:28px;}
+  .check-row{display:flex;align-items:flex-start;gap:12px;font-size:13.5px;color:#c9cdd2;line-height:1.5;}
+  .check-row input{margin-top:3px;accent-color:var(--gold);width:16px;height:16px;flex-shrink:0;}
+  .check-row a{color:var(--gold-bright);text-decoration:underline;text-decoration-color:rgba(255,176,0,0.35);}
+
+  .submit-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  #submitBtn{
+    font-family:'JetBrains Mono';font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+    background:var(--gold);color:var(--asphalt);border:none;padding:16px 36px;font-weight:700;cursor:pointer;
+    transition:all .25s;position:relative;
+  }
+  #submitBtn:hover{background:var(--gold-bright);transform:translateY(-2px);}
+  #submitBtn:disabled{opacity:0.6;cursor:progress;transform:none;}
+  .form-status{font-family:'JetBrains Mono';font-size:12.5px;letter-spacing:0.02em;}
+  .form-status.ok{color:#7fd68a;}
+  .form-status.err{color:var(--blood);}
+
+  footer{border-top:1px solid var(--line);padding:56px 5vw 40px;}
+  .footer-grid{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .footer-logo{font-family:'Teko';font-size:24px;letter-spacing:0.04em;}
+  .footer-logo b{color:var(--gold);}
+  .footer-note{font-size:12.5px;color:var(--muted);max-width:520px;line-height:1.6;}
+  .footer-meta{font-family:'JetBrains Mono';font-size:11px;color:#5c636b;letter-spacing:0.04em;}
+
+  .ember{position:fixed;bottom:-10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:1;opacity:0;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* COOKIE / PRIVACY NOTICE */
+  .cookie-notice{
+    position:fixed;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    z-index:500;
+    max-width:920px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:18px 20px;
+    background:rgba(20,24,29,0.97);
+    border:1px solid var(--line);
+    box-shadow:0 16px 50px rgba(0,0,0,0.45);
+    backdrop-filter:blur(10px);
+  }
+  .cookie-notice[hidden]{display:none;}
+  .cookie-text{
+    font-size:13px;
+    line-height:1.55;
+    color:#c9cdd2;
+  }
+  .cookie-text b{color:var(--paper);}
+  .cookie-accept{
+    flex-shrink:0;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    border:1px solid var(--gold);
+    background:var(--gold);
+    color:var(--asphalt);
+    padding:10px 16px;
+    cursor:pointer;
+    font-weight:700;
+  }
+  .cookie-accept:hover{background:var(--gold-bright);}
+  @media (max-width:640px){
+    .cookie-notice{
+      left:12px;
+      right:12px;
+      bottom:12px;
+      align-items:flex-start;
+      flex-direction:column;
+    }
+    .cookie-accept{width:100%;}
+  }
+
+
+  /* ==========================================================
+     RESPONSIVE: PHONE / TABLET / DESKTOP
+     ========================================================== */
+
+  /* Large desktop */
+  @media (min-width:1280px){
+    nav{padding-left:4vw;padding-right:4vw;}
+    section{padding-left:4vw;padding-right:4vw;}
+    .hero{padding-left:4vw;padding-right:4vw;}
+  }
+
+  /* Tablet */
+  @media (max-width:1024px){
+    nav{padding:16px 4vw;}
+    .logo{font-size:23px;}
+    .navlinks{gap:20px;}
+    .hero{padding:110px 4vw 56px;}
+    .hero p.sub{font-size:16px;}
+    section{padding:92px 4vw;}
+    .section-head{margin-bottom:48px;}
+    .about-grid{gap:38px;}
+    .prize-card{padding:30px;}
+    .org-card{padding:30px;}
+    .form-wrap{padding:38px;}
+  }
+
+  /* Small tablet / large phone */
+  @media (max-width:768px){
+    nav{
+      padding:14px 18px;
+      gap:12px;
+      background:rgba(10,12,15,0.92);
+      backdrop-filter:blur(8px);
+    }
+
+    .logo{
+      font-size:20px;
+      line-height:1;
+      min-width:0;
+    }
+
+    .nav-cta{
+      padding:8px 12px;
+      font-size:10px;
+    }
+
+    .hero{
+      min-height:100svh;
+      padding:100px 20px 64px;
+    }
+
+    .viewfinder{inset:16px;}
+    .hud-top,.hud-bottom{font-size:9px;}
+
+    .eyebrow-badge{
+      font-size:10px;
+      letter-spacing:.14em;
+      padding:7px 12px;
+      margin-bottom:22px;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:clamp(48px,16vw,92px);
+      line-height:.9;
+    }
+
+    .hero p.sub{
+      font-size:15px;
+      line-height:1.55;
+      margin-top:20px;
+    }
+
+    .hero-ctas{
+      width:100%;
+      margin-top:30px;
+    }
+
+    .btn-primary,
+    .btn-ghost{
+      width:100%;
+      max-width:420px;
+      text-align:center;
+      padding:14px 18px;
+    }
+
+    .countdown-strip{
+      gap:14px;
+      margin-top:38px;
+    }
+
+    .cd-block{min-width:62px;}
+    .cd-num{font-size:36px;}
+
+    section{
+      padding:76px 20px;
+    }
+
+    .section-head{
+      margin-bottom:38px;
+    }
+
+    .section-head h2{
+      font-size:clamp(34px,10vw,52px);
+    }
+
+    .section-head p{
+      font-size:14px;
+    }
+
+    .about-grid,
+    .prize-hero,
+    .prize-grid,
+    .prize-band,
+    .org-grid,
+    .form-grid{
+      grid-template-columns:1fr;
+    }
+
+    .platform-row{
+      padding:16px 16px;
+      gap:12px;
+    }
+
+    .platform-row .tag{
+      text-align:right;
+      font-size:9px;
+    }
+
+    .cond-row{
+      grid-template-columns:48px 1fr;
+      gap:14px;
+      padding:24px 0;
+    }
+
+    .cond-num{font-size:46px;}
+    .cond-link{
+      grid-column:1/-1;
+      justify-self:start;
+      width:auto;
+    }
+
+    .prize-card,
+    .prize-mini,
+    .band-block,
+    .org-card{
+      padding:24px;
+    }
+
+    .stat-strip{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2px;
+    }
+
+    .stat-box{
+      min-width:0;
+      padding:20px 16px;
+    }
+
+    .stat-box .num{font-size:42px;}
+
+    .timeline{padding-left:28px;}
+    .tl-item::before{left:-28px;}
+
+    .form-wrap{
+      padding:28px 20px;
+    }
+
+    .field input,
+    .field select{
+      width:100%;
+      font-size:16px; /* prevents mobile Safari zoom */
+    }
+
+    .submit-row{
+      align-items:stretch;
+    }
+
+    #submitBtn{
+      width:100%;
+    }
+
+    .form-status{
+      width:100%;
+      line-height:1.45;
+    }
+
+    .footer-grid{
+      align-items:flex-start;
+      flex-direction:column;
+    }
+
+    .cookie-notice{
+      left:12px;
+      right:12px;
+      bottom:12px;
+      max-height:calc(100svh - 24px);
+      overflow:auto;
+    }
+  }
+
+  /* Phone */
+  @media (max-width:480px){
+    nav{padding:12px 14px;}
+    .logo{font-size:18px;}
+    .logo .dot{width:7px;height:7px;}
+    .nav-cta{padding:7px 9px;font-size:9px;}
+
+    .hero{
+      padding:92px 14px 54px;
+    }
+
+    .viewfinder{inset:10px;}
+    .corner{width:22px;height:22px;}
+
+    .hud-bottom span:last-child{display:none;}
+
+    .hero h1{
+      font-size:clamp(42px,17vw,72px);
+    }
+
+    .hero p.sub{
+      font-size:14px;
+    }
+
+    .scroll-cue{
+      bottom:18px;
+      font-size:9px;
+    }
+
+    section{
+      padding:64px 14px;
+    }
+
+    .about-text p{
+      font-size:15px;
+    }
+
+    .platform-row{
+      align-items:flex-start;
+      flex-direction:column;
+      gap:5px;
+    }
+
+    .platform-row .tag{
+      text-align:left;
+    }
+
+    .stat-strip{
+      grid-template-columns:1fr;
+    }
+
+    .prize-card h3,
+    .org-card h3{
+      font-size:30px;
+    }
+
+    .org-links{
+      gap:8px;
+    }
+
+    .org-links a{
+      flex:1 1 auto;
+      text-align:center;
+    }
+
+    .form-wrap{
+      padding:24px 16px;
+    }
+
+    .check-row{
+      font-size:13px;
+    }
+
+    footer{
+      padding:44px 14px 30px;
+    }
+
+    .cookie-text{
+      font-size:12.5px;
+    }
+  }
+
+
+  /* ==========================================================
+     MOBILE HERO FIX — чтобы заголовок не обрезался на телефонах
+     ========================================================== */
+  @media (max-width:600px){
+    .hero{
+      padding-left:16px;
+      padding-right:16px;
+      overflow:hidden;
+    }
+
+    .hero h1{
+      width:100%;
+      max-width:100%;
+      font-size:clamp(40px, 13.3vw, 58px);
+      line-height:.92;
+      letter-spacing:-0.015em;
+      text-align:center;
+    }
+
+    .hero h1 .glitchline{
+      display:block;
+      width:100%;
+      white-space:nowrap;
+    }
+
+    .glitch-wrap::before,
+    .glitch-wrap::after{
+      width:100%;
+    }
+
+    .eyebrow-badge{
+      max-width:calc(100vw - 44px);
+      justify-content:center;
+      font-size:9px;
+      letter-spacing:.10em;
+      gap:7px;
+      padding:7px 10px;
+      white-space:nowrap;
+    }
+
+    .hero p.sub{
+      max-width:350px;
+      font-size:13.5px;
+      line-height:1.5;
+      margin-top:18px;
+    }
+
+    .hero-ctas{
+      margin-top:26px;
+    }
+
+    .btn-primary{
+      max-width:100%;
+      font-size:11px;
+      padding:14px 12px;
+    }
+
+    .countdown-strip{
+      width:100%;
+      gap:8px;
+      justify-content:space-between;
+      padding:0 8px;
+      margin-top:32px;
+    }
+
+    .cd-block{
+      min-width:0;
+      flex:1;
+    }
+
+    .cd-num{
+      font-size:34px;
+    }
+
+    .cd-label{
+      font-size:8px;
+      letter-spacing:.08em;
+    }
+  }
+
+  @media (max-width:390px){
+    nav{
+      padding-left:10px;
+      padding-right:10px;
+    }
+
+    .logo{
+      font-size:16px;
+      gap:7px;
+    }
+
+    .nav-cta{
+      font-size:8px;
+      padding:7px 8px;
+    }
+
+    .hero{
+      padding-left:12px;
+      padding-right:12px;
+    }
+
+    .hero h1{
+      font-size:clamp(38px, 13vw, 50px);
+    }
+
+    .hero p.sub{
+      font-size:13px;
+    }
+
+    .viewfinder{
+      inset:8px;
+    }
+  }
+
+
+  /* ==========================================================
+     EXTRA MOBILE TITLE FIX
+     ========================================================== */
+  @media (max-width:600px){
+    .hero h1{
+      font-size:clamp(34px, 10.5vw, 42px) !important;
+      line-height:.94;
+      letter-spacing:-0.02em;
+      padding:0 4px;
+    }
+
+    .hero h1 .glitchline{
+      white-space:nowrap;
+      max-width:100%;
+    }
+
+    .hero h1 .glitch-wrap{
+      transform:scaleX(.94);
+      transform-origin:center;
+    }
+
+    .hero h1 .gold-word{
+      font-size:1.08em;
+    }
+  }
+
+  @media (max-width:390px){
+    .hero h1{
+      font-size:clamp(32px, 10.2vw, 39px) !important;
+    }
+
+    .eyebrow-badge{
+      font-size:8.5px;
+      letter-spacing:.08em;
+    }
+
+    .hero p.sub{
+      max-width:330px;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="scanline"></div>
+<div class="vignette"></div>
+
+<nav>
+  <div class="logo"><span class="dot"></span><b>BLACK RUSSIA</b>&nbsp;| VLADIMIR</div>
+  <div class="navlinks">
+    <a href="#about">О конкурсе</a>
+    <a href="#conditions">Условия</a>
+    <a href="#prizes">Призы</a>
+    <a href="#organizers">Организаторы</a>
+  </div>
+  <a href="#form" class="nav-cta">Подать заявку</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="viewfinder">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="hud-top">
+      <span class="rec-tag"><span class="dot"></span>REC</span>
+      <span id="timecode">00:00:00</span>
+    </div>
+    <div class="hud-bottom">
+      <span>VLADIMIR / CASTING-01</span>
+      <span>AF ● 4K ● ▲ 82%</span>
+    </div>
+  </div>
+
+  <div class="eyebrow-badge">КОНКУРС РЕКЛАМНЫХ РОЛИКОВ<span class="sep"></span>10 ПОБЕДИТЕЛЕЙ</div>
+
+  <h1>
+    <span class="glitchline glitch-wrap" data-text="ВОЗРОЖДЕНИЕ">ВОЗРОЖДЕНИЕ</span>
+    <span class="glitchline gold-word">ВЛАДИМИРА</span>
+  </h1>
+
+  <p class="sub">Сними креативный ролик о сервере <b style="color:var(--paper)">BLACK RUSSIA | VLADIMIR</b> и стань лицом города. Не важно, сколько лайков и просмотров — важна идея. Формат любой: TikTok, YouTube Shorts, VK Клипы.</p>
+
+  <div class="hero-ctas">
+    <a href="#form" class="btn-primary">Участвовать в конкурсе</a>
+  </div>
+
+  <div class="countdown-strip" id="countdown">
+    <div class="cd-block"><div class="cd-num" id="cd-days">--</div><div class="cd-label">дней</div></div>
+    <div class="cd-block"><div class="cd-num" id="cd-hours">--</div><div class="cd-label">часов</div></div>
+    <div class="cd-block"><div class="cd-num" id="cd-min">--</div><div class="cd-label">минут</div></div>
+    <div class="cd-block"><div class="cd-num" id="cd-sec">--</div><div class="cd-label">секунд</div></div>
+  </div>
+
+  <div class="scroll-cue"><span>Листай</span><div class="line"></div></div>
+</header>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <span class="eyebrow" style="color:var(--gold);font-family:'JetBrains Mono';font-size:12px;letter-spacing:0.2em;text-transform:uppercase;">О конкурсе</span>
+      <h2 style="margin:14px 0 26px;font-size:clamp(30px,4vw,44px);">Не ролик ради ролика.<br>Ролик, за который не стыдно.</h2>
+      <p>VLADIMIR растёт — и нам нужны голоса, которые расскажут об этом лучше любой рекламы. <b>«Возрождение Владимира»</b> — конкурс креативных роликов, где город показывают те, кто в нём живёт: игроки сервера.</p>
+      <p>Никакой накрутки, никакой гонки за просмотрами. Жюри — команда проекта и блогеры VLADIMIR — оценивают <b>идею, монтаж и то, насколько ролик действительно хочется пересмотреть</b>.</p>
+      <div class="note-strip">Накрутка просмотров и лайков запрещена. Ролик должен быть полностью авторским.</div>
+    </div>
+    <div class="reveal">
+      <div class="platform-list">
+        <div class="platform-row"><span class="name">TikTok</span><span class="tag">ВЕРТИКАЛЬНОЕ ВИДЕО</span></div>
+        <div class="platform-row"><span class="name">YouTube Shorts</span><span class="tag">ВЕРТИКАЛЬНОЕ ВИДЕО</span></div>
+        <div class="platform-row"><span class="name">VK Клипы</span><span class="tag">ВЕРТИКАЛЬНОЕ ВИДЕО</span></div>
+        <div class="platform-row"><span class="name">Другие площадки</span><span class="tag">ПО СОГЛАСОВАНИЮ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="conditions">
+  <div class="section-head reveal">
+    <span class="eyebrow">Условия участия</span>
+    <h2>Задание перед стартом съёмки</h2>
+    <p>Четыре пункта — выполни все перед тем, как отправлять заявку. Без них ролик к конкурсу не допускается.</p>
+  </div>
+  <div class="conditions reveal">
+    <div class="cond-row">
+      <div class="cond-num">01</div>
+      <div class="cond-body"><h3>Игровой уровень 3+</h3><p>Персонаж на сервере VLADIMIR должен иметь третий игровой уровень или выше.</p></div>
+      <span class="cond-link" style="opacity:0;pointer-events:none;">—</span>
+    </div>
+    <div class="cond-row">
+      <div class="cond-num">02</div>
+      <div class="cond-body"><h3>Опубликуй ролик о VLADIMIR</h3><p>Выложи авторский рекламный ролик на любой удобной площадке — TikTok, Shorts или VK Клипы.</p></div>
+      <span class="cond-link" style="opacity:0;pointer-events:none;">—</span>
+    </div>
+    <div class="cond-row">
+      <div class="cond-num">03</div>
+      <div class="cond-body"><h3>Подпишись на VK VLADIMIR</h3><p>Подпишись на официальную группу сервера VLADIMIR во ВКонтакте — там будут опубликованы итоги конкурса.</p></div>
+      <a class="cond-link" href="https://vk.ru/vladimir.blackrussia" target="_blank" rel="noopener">Подписаться</a>
+    </div>
+    <div class="cond-row">
+      <div class="cond-num">04</div>
+      <div class="cond-body"><h3>Оставь ссылку на ролик</h3><p>Заполни форму заявки ниже и прикрепи прямую ссылку на опубликованное видео.</p></div>
+      <a class="cond-link" href="#form">К форме заявки</a>
+    </div>
+    <div class="cond-row">
+      <div class="cond-num">05</div>
+      <div class="cond-body"><h3>Съёмка под официальный трек</h3><p>Ролик необходимо снять под указанный трек. Используй его как основу для монтажа и атмосферы видео.</p></div>
+      <a class="cond-link" href="https://drive.google.com/file/d/1nTqQOfKGXQmu1ORVPZi6U4SQ1cLMatuk/view?usp=sharing" target="_blank" rel="noopener">Открыть трек</a>
+    </div>
+  </div>
+</section>
+
+<section id="prizes">
+  <div class="section-head reveal">
+    <span class="eyebrow">Призовой фонд</span>
+    <h2>10 победителей заберут награды</h2>
+    <p>От эксклюзивного Rolls-Royce Phantom с росписью всей команды проекта до игровой валюты и совместных скринов с администрацией сервера.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="prize-hero">
+      <div class="prize-card gold-tier">
+        <div class="prize-place"><span class="rank">01</span>ГЛАВНЫЙ ПРИЗ</div>
+        <h3>Rolls-Royce Phantom</h3>
+        <ul>
+          <li>Эксклюзивные росписи от команды проекта, BR Manager, Контент-менеджеров<br>Роспись от ГА, ЗГА, ОЗГА</li>
+          <li>Роспись от блогера VLADIMIR и куратора администрации</li>
+          <li>Совместный скрин в игре с администрацией и блогером проекта</li>
+        </ul>
+      </div>
+      <div class="prize-card">
+        <div class="prize-place"><span class="rank">02</span>ВТОРОЕ МЕСТО</div>
+        <h3>Chevrolet Corvette C8</h3>
+        <ul>
+          <li>Роспись от ГА, ЗГА, ОЗГА, куратора администрации<br>Роспись от ЗСА</li>
+          <li>Роспись от блогера VLADIMIR</li>
+          <li>Совместный скрин с администрацией и блогером сервера</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prize-grid">
+      <div class="prize-mini">
+        <div class="prize-place"><span class="rank">03</span>ТРЕТЬЕ МЕСТО</div>
+        <h3>BMW G82</h3>
+        <ul><li>Роспись от ГА, ЗГА, ОЗГА, куратора администрации, блогера VLADIMIR</li></ul>
+      </div>
+      <div class="prize-mini">
+        <div class="prize-place"><span class="rank">04–05</span>ЧЕТВЁРТОЕ И ПЯТОЕ</div>
+        <h3>5КК каждому</h3>
+        <ul><li>Роспись от ГА, ЗГА, ОЗГА и блогера VLADIMIR</li></ul>
+      </div>
+    </div>
+
+    <div class="prize-band">
+      <div class="band-block">
+        <div class="prize-place"><span class="rank">06–10</span>МЕСТА</div>
+        <div class="amount">3КК каждому</div>
+        <p>Роспись от блогера VLADIMIR. Совместный скрин в игре с блогером VLADIMIR.</p>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-box"><div class="num">10</div><div class="lbl">Победителей</div></div>
+      <div class="stat-box"><div class="num">5</div><div class="lbl">Условия участия</div></div>
+      <div class="stat-box"><div class="num">1</div><div class="lbl">Rolls-Royce Phantom в главном призе</div></div>
+      <div class="stat-box"><div class="num">∞</div><div class="lbl">Пространства для креатива</div></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="organizers">
+  <div class="section-head reveal">
+    <span class="eyebrow">Кто стоит за конкурсом</span>
+    <h2>Авторы и организатор</h2>
+  </div>
+  <div class="org-grid reveal">
+    <div class="org-card">
+      <div class="org-role">Автор конкурса</div>
+      <h3>Sasha_Prince</h3>
+      <div class="org-sub">Автор конкурса · сервер VLADIMIR</div>
+      <div class="org-links">
+        <a href="https://vk.ru/sasha_prince1" target="_blank" rel="noopener">VK</a>
+        <a href="https://forum.blackrussia.online/members/sasha_prince.2388022/" target="_blank" rel="noopener">Форум</a>
+        <a href="https://www.tiktok.com/@sasha_prince78?_r=1&_t=ZS-99LAHU6YJCG" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+    <div class="org-card">
+      <div class="org-role">Автор конкурса</div>
+      <h3>Calypso_Person</h3>
+      <div class="org-sub">Создатель сайта · Автор конкурса · сервер VLADIMIR</div>
+      <div class="org-links">
+        <a href="https://vk.ru/ha1333ha" target="_blank" rel="noopener">VK</a>
+        <a href="https://forum.blackrussia.online/members/fantom_stark.1109919/" target="_blank" rel="noopener">Форум</a>
+        <a href="https://www.tiktok.com/@ramacrmp?_r=1&_t=ZS-99LBOUkK6nI" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+    <div class="org-card">
+      <div class="org-role">Организатор</div>
+      <h3>Artemida_Kreee</h3>
+      <div class="org-sub">Главный администратор сервера VLADIMIR</div>
+      <div class="org-links">
+        <a href="https://vk.ru/artemida_kreee" target="_blank" rel="noopener">VK</a>
+        <a href="https://forum.blackrussia.online/members/artemida_kreee-%F0%9F%96%A4.83564/" target="_blank" rel="noopener">Форум</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="form">
+  <div class="section-head reveal">
+    <span class="eyebrow">Заявка на участие</span>
+    <h2>Отправь ролик на конкурс</h2>
+    <p>Заполни форму после выполнения всех условий. Для связи можно указать либо Telegram, либо VK — выбери удобный вариант.</p>
+  </div>
+
+  <form class="form-wrap reveal" id="entryForm" autocomplete="off" method="POST" action="https://script.google.com/macros/s/AKfycby2f5qYM15LBoacQne5mCwI1FOVdk6QJbehLMV3GVTBqaToaqfOWO7LJcSXOgYqdjFe/exec" target="submitFrame">
+    <div class="form-grid">
+      <div class="field">
+        <label for="nickname">Никнейм персонажа</label>
+        <input type="text" id="nickname" name="Никнейм" placeholder="Ivan_Petrov" required>
+      </div>
+      <div class="field">
+        <label for="contactType">Способ связи</label>
+        <select id="contactType" name="Способ связи" required>
+          <option value="Telegram" selected>Telegram</option>
+          <option value="VK">VK</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="contact" id="contactLabel">Telegram для связи</label>
+        <input type="text" id="contact" name="Контакт" placeholder="@username" required>
+      </div>
+      <div class="field">
+        <label for="level">Игровой уровень</label>
+        <input type="number" id="level" name="Уровень" min="3" placeholder="3 и выше" required>
+      </div>
+      <div class="field">
+        <label for="platform">Платформа ролика</label>
+        <select id="platform" name="Платформа" required>
+          <option value="" disabled selected>Выбери площадку</option>
+          <option>TikTok</option>
+          <option>YouTube Shorts</option>
+          <option>VK Клипы</option>
+          <option>Другое</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="link">Ссылка на опубликованный ролик</label>
+        <input type="url" id="link" name="Ссылка" placeholder="https://" required>
+      </div>
+    </div>
+
+    <div class="checks">
+      <label class="check-row"><input type="checkbox" required> Ролик полностью авторский, накрутка просмотров и лайков не использовалась</label>
+      <label class="check-row"><input type="checkbox" required> Подтверждаю, что подписался на группу VLADIMIR во ВКонтакте</label>
+      <label class="check-row"><input type="checkbox" required> Съёмка выполнена под официальный трек конкурса. Ролик создан с использованием указанного трека как основы для монтажа и атмосферы видео.</label>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" id="submitBtn">Отправить заявку</button>
+      <span class="form-status" id="formStatus"></span>
+    </div>
+  </form>
+  <iframe name="submitFrame" id="submitFrame" style="display:none" title="Отправка заявки"></iframe>
+</section>
+
+
+<div class="cookie-notice" id="cookieNotice" hidden>
+  <div class="cookie-text">
+    <b>Использование сайта</b><br>
+    Продолжая пользоваться сайтом, вы соглашаетесь с обработкой данных,
+    которые вы добровольно отправляете через форму, а также с использованием
+    технических cookie и локального хранилища, необходимых для корректной работы сайта.
+  </div>
+  <button type="button" class="cookie-accept" id="cookieAccept">Понятно</button>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><b>VLADIMIR</b> · ВОЗРОЖДЕНИЕ</div>
+      <p class="footer-note" style="margin-top:10px;">Конкурс «Возрождение Владимира» проводится в рамках сервера BLACK RUSSIA | VLADIMIR. Авторы конкурса — Sasha_Prince и Calypso_Person, организатор — Artemida_Kreee.</p>
+    </div>
+    <div class="footer-meta">
+      CASTING-01 · SEASON 2026 · VLADIMIR<br>
+      <span style="display:inline-block;margin-top:8px;">Сайт создан: Calypso_Person · Организатор конкурса</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Всегда открываем страницу с самого верха и не восстанавливаем старую прокрутку.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  // Если страница была открыта/перезагружена с #form или другим якорем — убираем якорь.
+  if (location.hash) {
+    history.replaceState(null, document.title, location.pathname + location.search);
+  }
+
+  window.scrollTo(0, 0);
+  window.addEventListener('pageshow', () => {
+    window.scrollTo(0, 0);
+    const savedForm = document.getElementById('entryForm');
+    if (savedForm) savedForm.reset();
+  });
+
+  const tcEl = document.getElementById('timecode');
+  const startTs = Date.now();
+  setInterval(()=>{
+    const diff = Math.floor((Date.now()-startTs)/1000);
+    const h = String(Math.floor(diff/3600)).padStart(2,'0');
+    const m = String(Math.floor((diff%3600)/60)).padStart(2,'0');
+    const s = String(diff%60).padStart(2,'0');
+    tcEl.textContent = `${h}:${m}:${s}`;
+  },1000);
+
+  // Даты по московскому времени (UTC+3)
+  const startDate = new Date('2026-09-01T00:00:00+03:00').getTime(); // Начало конкурса
+  const endDate = new Date('2026-09-15T23:59:59+03:00').getTime();   // Окончание конкурса
+  
+  function updateCountdown(){
+    const now = Date.now();
+    const dEl=document.getElementById('cd-days'), hEl=document.getElementById('cd-hours'),
+          mEl=document.getElementById('cd-min'), sEl=document.getElementById('cd-sec');
+    
+    let target, labelDays, labelHours, labelMin, labelSec;
+    
+    if (now < startDate) {
+      // До начала конкурса - считаем до 01.09.2026 00:00
+      target = startDate;
+      labelDays = 'дней';
+      labelHours = 'часов';
+      labelMin = 'минут';
+      labelSec = 'секунд';
+    } else if (now >= startDate && now < endDate) {
+      // Во время конкурса - считаем до 15.09.2026 23:59
+      target = endDate;
+      labelDays = 'дней';
+      labelHours = 'часов';
+      labelMin = 'минут';
+      labelSec = 'секунд';
+    } else {
+      // После окончания конкурса
+      dEl.textContent='00';hEl.textContent='00';mEl.textContent='00';sEl.textContent='00';
+      return;
+    }
+    
+    const diff = target - now;
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    
+    dEl.textContent=String(d).padStart(2,'0');
+    hEl.textContent=String(h).padStart(2,'0');
+    mEl.textContent=String(m).padStart(2,'0');
+    sEl.textContent=String(s).padStart(2,'0');
+    
+    // Обновляем подписи
+    dEl.nextElementSibling.textContent = labelDays;
+    hEl.nextElementSibling.textContent = labelHours;
+    mEl.nextElementSibling.textContent = labelMin;
+    sEl.nextElementSibling.textContent = labelSec;
+  }
+  updateCountdown();
+  setInterval(updateCountdown,1000);
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  function spawnEmber(){
+    const ember = document.createElement('div');
+    ember.className='ember';
+    const size = 2+Math.random()*3;
+    ember.style.width=size+'px';
+    ember.style.height=size+'px';
+    ember.style.left = Math.random()*100+'vw';
+    ember.style.opacity = 0.15+Math.random()*0.35;
+    document.body.appendChild(ember);
+    const duration = 6000+Math.random()*6000;
+    const drift = (Math.random()-0.5)*120;
+    ember.animate([
+      {transform:'translate(0,0)', opacity:ember.style.opacity},
+      {transform:`translate(${drift}px, -${window.innerHeight+40}px)`, opacity:0}
+    ],{duration, easing:'linear'});
+    setTimeout(()=>ember.remove(), duration);
+  }
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    setInterval(spawnEmber, 700);
+  }
+
+  const form = document.getElementById('entryForm');
+  const statusEl = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+  const contactTypeEl = document.getElementById('contactType');
+  const contactLabelEl = document.getElementById('contactLabel');
+  const contactInputEl = document.getElementById('contact');
+
+  function syncContactField(){
+    if(contactTypeEl.value === 'VK'){
+      contactLabelEl.textContent = 'VK для связи';
+      contactInputEl.type = 'url';
+      contactInputEl.placeholder = 'https://vk.com/username или https://vk.ru/username';
+    }else{
+      contactLabelEl.textContent = 'Telegram для связи';
+      contactInputEl.type = 'text';
+      contactInputEl.placeholder = '@username';
+    }
+  }
+
+  contactTypeEl.addEventListener('change', syncContactField);
+  syncContactField();
+
+  // ==========================================================
+  // НАДЁЖНАЯ ОТПРАВКА ФОРМЫ В APPS SCRIPT ЧЕРЕЗ СКРЫТЫЙ IFRAME
+  // ==========================================================
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby2f5qYM15LBoacQne5mCwI1FOVdk6QJbehLMV3GVTBqaToaqfOWO7LJcSXOgYqdjFe/exec';
+  let sending = false;
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+
+    if(sending) return;
+
+    // Сначала даём браузеру проверить required/min/type.
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+
+    sending = true;
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Отправка...';
+    statusEl.className = 'form-status';
+
+    // ВАЖНО:
+    // Используем обычную HTML POST-форму, а не fetch.
+    // Именно такой запрос Google Apps Script стабильно получает в e.parameter.
+    form.action = APPS_SCRIPT_URL;
+    form.method = 'POST';
+    form.target = 'submitFrame';
+
+    try {
+      HTMLFormElement.prototype.submit.call(form);
+
+      // Не ждём ответа Google в iframe: его редирект может блокировать
+      // события load/postMessage, хотя сама заявка уже успешно обрабатывается.
+      setTimeout(()=>{
+        statusEl.textContent = 'Заявка отправлена!';
+        statusEl.className = 'form-status ok';
+
+        form.reset();
+        syncContactField();
+
+        submitBtn.disabled = false;
+        sending = false;
+      }, 1500);
+
+    } catch(err) {
+      console.error('Form submit error:', err);
+      statusEl.textContent = 'Не удалось отправить заявку. Попробуй ещё раз.';
+      statusEl.className = 'form-status err';
+      submitBtn.disabled = false;
+      sending = false;
+    }
+  });
+
+  // ==========================================================
+  // УВЕДОМЛЕНИЕ ОБ ИСПОЛЬЗОВАНИИ САЙТА / COOKIE
+  // Показывается через 25 секунд и только пока пользователь
+  // ещё не нажал "Понятно" на этом устройстве.
+  // ==========================================================
+  const cookieNotice = document.getElementById('cookieNotice');
+  const cookieAccept = document.getElementById('cookieAccept');
+
+  let cookieAccepted = false;
+
+  try {
+    cookieAccepted =
+      localStorage.getItem('vladimir_cookie_notice_accepted') === '1';
+  } catch (_) {}
+
+  if (!cookieAccepted) {
+    setTimeout(()=>{
+      cookieNotice.hidden = false;
+    }, 25000);
+  }
+
+  cookieAccept.addEventListener('click', ()=>{
+    cookieNotice.hidden = true;
+
+    try {
+      localStorage.setItem(
+        'vladimir_cookie_notice_accepted',
+        '1'
+      );
+    } catch (_) {}
+  });
+
+</script>
+</body>
+</html>
